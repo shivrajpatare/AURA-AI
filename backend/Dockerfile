@@ -1,17 +1,21 @@
-# Build Stage
-FROM node:18-alpine AS builder
+FROM node:20-alpine
+
 WORKDIR /app
+
+# Copy package info first for caching
 COPY package*.json ./
-RUN npm ci
+
+# Install ALL dependencies (including typescript for build)
+RUN npm install
+
+# Copy source code
 COPY . .
+
+# Build TypeScript to JavaScript (dist/)
 RUN npm run build
 
-# Production Stage
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY --from=builder /app/dist ./dist
-
+# Expose the API port
 EXPOSE 3000
-CMD ["node", "dist/server.js"]
+
+# Start the built application
+CMD ["npm", "start"]
