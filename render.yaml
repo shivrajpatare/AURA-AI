@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: aura-backend
+    env: docker
+    root: backend
+    plan: free
+    branch: main
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+    # You will need to add these secrets manually in the Render Dashboard:
+    # - SUPABASE_URL
+    # - SUPABASE_ANON_KEY
+    # - OPENAI_API_KEY
