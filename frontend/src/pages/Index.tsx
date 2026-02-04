@@ -18,6 +18,16 @@ type Screen = "home" | "capture" | "analysis" | "confirmation" | "tracking" | "a
 const Index = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>("home");
   const [analysisData, setAnalysisData] = useState<AnalysisResult | null>(null);
+  const [backendStatus, setBackendStatus] = useState<string>("Checking...");
+
+  // Use simple effect to check backend
+  useEffect(() => {
+    import("@/services/api").then(({ checkBackendHealth }) => {
+      checkBackendHealth().then(res => {
+        setBackendStatus(res ? "Online ✅" : "Offline ❌");
+      });
+    });
+  }, []);
 
   const handleStartReport = () => setCurrentScreen("capture");
 
@@ -68,19 +78,7 @@ const Index = () => {
 
   // Main landing page - Aura design
 
-  // Quick Backend Health Check UI
-  const [backendStatus, setBackendStatus] = useState<string>("Checking...");
-
-  // Use simple effect to check backend
-  // Use simple effect to check backend
-  useEffect(() => {
-    import("@/services/api").then(({ checkBackendHealth }) => {
-      checkBackendHealth().then(res => {
-        setBackendStatus(res ? "Online ✅" : "Offline ❌");
-      });
-    });
-  }, []);
-
+  // Main landing page - Aura design
   return (
     <div className="min-h-screen bg-background relative">
       <div className="absolute top-0 right-0 p-2 text-xs text-white/50 z-50 pointer-events-none">
