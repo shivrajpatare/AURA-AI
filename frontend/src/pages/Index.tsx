@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AuraNavbar } from "@/components/AuraNavbar";
 import { AuraHero } from "@/components/AuraHero";
 import { PulseSection } from "@/components/PulseSection";
@@ -72,13 +72,14 @@ const Index = () => {
   const [backendStatus, setBackendStatus] = useState<string>("Checking...");
 
   // Use simple effect to check backend
-  useState(() => {
+  // Use simple effect to check backend
+  useEffect(() => {
     import("@/services/api").then(({ checkBackendHealth }) => {
       checkBackendHealth().then(res => {
         setBackendStatus(res ? "Online ✅" : "Offline ❌");
       });
     });
-  });
+  }, []);
 
   return (
     <div className="min-h-screen bg-background relative">
