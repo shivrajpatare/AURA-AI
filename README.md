@@ -20,7 +20,7 @@ Citizens want to help fix their neighborhoods, but the friction is too high. fil
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 This is a professional monorepo setup for robust deployment:
 
@@ -40,7 +40,7 @@ This is a professional monorepo setup for robust deployment:
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 *   Node.js (v18+)
@@ -73,18 +73,18 @@ npm run dev
 
 ---
 
-## 🧠 AI & Data Privacy
+## AI & Data Privacy
 
 *   **AI Models**: We use vision models (Gemini Flash / GPT-4o) strictly for classification. No facial recognition is performed.
 *   **Location Data**: Exact location is stored only for issue resolution. Public maps use fuzzed/clustered locations.
 
 ---
 
-## ⚠️ Current Guardrails
+## Current Guardrails
 *   This is a **private prototype**. Do not deploy to public production without auditing RLS policies.
 *   Image uploads are currently restricted to authenticated users (admin-side) and anonymous reporters (limited rate).
 
 ---
 
 ## Team
-Built by [Your Name/Team].
+Built by with ❤️  SHIVRAJ & SHOAM / TEAM CODE SHIFTERS.
