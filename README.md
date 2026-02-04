@@ -87,4 +87,4 @@ npm run dev
 ---
 
 ## Team
-Built by with ❤️  SHIVRAJ & SHOAM / TEAM CODE SHIFTERS.
+Built by with ❤️  SHIVRAJ & SOHAM / TEAM CODE SHIFTERS.
