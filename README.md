@@ -4,6 +4,11 @@
 
 Most city reporting apps are clunky forms that no one uses. Aura changes that. It's a camera-first web application that uses AI to analyze, classify, and route civic issues (like garbage dumps, potholes, or broken lights) instantly.
 
+## 🌍 Live Demo
+**Access the Platform:** [https://aura-ai-one-liard.vercel.app](https://aura-ai-one-liard.vercel.app)
+
+*This is a functional prototype running on Vercel (Frontend) and Render (AI Backend). You can test the AI analysis and reporting flow directly.*
+
 ### The Problem
 Citizens want to help fix their neighborhoods, but the friction is too high. filling out long forms, finding category codes, and manually entering addresses discriminates against quick action.
 
