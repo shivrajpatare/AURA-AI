@@ -73,6 +73,22 @@ export const AdminDashboard = ({ onBack }: AdminDashboardProps) => {
     await supabase.auth.signOut();
   };
 
+  const handleEmailSignIn = async () => {
+    setAuthLoading(true);
+    setAuthError("");
+
+    // Attempt sign in
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setAuthError(error.message);
+    }
+    setAuthLoading(false);
+  };
+
   const fetchData = async () => {
     if (!isAdmin) return;
     setLoading(true);
@@ -216,12 +232,44 @@ export const AdminDashboard = ({ onBack }: AdminDashboardProps) => {
               <div className="space-y-4">
                 <Button
                   onClick={handleGoogleSignIn}
-                  className="w-full rounded-xl bg-white text-black hover:bg-white/90 shadow-md transition-all h-12 relative overflow-hidden group"
+                  className="w-full rounded-xl bg-white text-black hover:bg-white/90 shadow-md transition-all h-12 relative overflow-hidden group mb-4"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                   <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5 mr-3" />
                   Sign in with Google
                 </Button>
+
+                <div className="relative flex items-center gap-2 py-2">
+                  <div className="h-px bg-foreground/10 flex-1" />
+                  <span className="text-xs text-foreground/40 font-light">OR</span>
+                  <div className="h-px bg-foreground/10 flex-1" />
+                </div>
+
+                <form onSubmit={(e) => { e.preventDefault(); handleEmailSignIn(); }} className="space-y-3">
+                  <Input
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="bg-white/5 border-white/10 text-foreground"
+                    required
+                  />
+                  <Input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="bg-white/5 border-white/10 text-foreground"
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full rounded-xl"
+                    disabled={authLoading}
+                  >
+                    {authLoading ? "Signing in..." : "Sign in with Email"}
+                  </Button>
+                </form>
 
                 {authError && (
                   <p className="text-sm text-destructive text-center bg-destructive/10 p-2 rounded-lg">{authError}</p>
